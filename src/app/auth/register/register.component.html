@@ -1,0 +1,39 @@
+<div class="login-wrapper">
+  <mat-card class="login-card">
+    <mat-card-header>
+      <mat-card-title>Registrate</mat-card-title>
+      <mat-card-subtitle>Bienvenido, por favor ingresa tus datos</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form id="registerform" autocomplete="off" [formGroup]="registerForm" (ngSubmit)="createUser()">
+        <mat-form-field appearance="fill" class="full-width-input">
+          <mat-label>Correo electrónico</mat-label>
+          <input matInput placeholder="Ejemplo: usuario@dominio.com" type="email" formControlName="email">
+          <mat-error *ngIf="campoNoValidado('email')">El correo es obligatorio y registre un correo válido.</mat-error>
+          <!-- <mat-error *ngIf="registerForm.get('email').errors?.email">Por favor ingresa un correo válido.</mat-error> -->
+          <mat-icon matSuffix>email</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width-input">
+          <mat-label>Contraseña</mat-label>
+          <input matInput type="password" formControlName="password">
+          <mat-error *ngIf="campoNoValidado('password')">La contraseña es obligatoria.</mat-error>
+          <mat-icon matSuffix>lock</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width-input">
+          <mat-label>Confirmar Contraseña</mat-label>
+          <input matInput type="password" formControlName="password2">
+          <mat-error *ngIf="claveNoValidas()">Las contraseña deben ser iguales.</mat-error>
+          <mat-icon matSuffix>lock</mat-icon>
+        </mat-form-field>
+
+        <p class="forgot-password">
+          <a href="/login">Iniciar Sesión</a>
+        </p>
+
+        <button mat-raised-button color="primary" class="full-width-button">Registrarme</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

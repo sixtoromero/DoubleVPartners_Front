@@ -1,0 +1,19 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="navigateDashBoard()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>AIRIS Solutions</span>
+  <span class="example-spacer"></span>
+
+  <button mat-button [matMenuTriggerFor]="menu">Compras</button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="navigateToProjects()">Proyectos</button>
+  </mat-menu>
+
+  <button mat-button [matMenuTriggerFor]="estadistica">Venta</button>
+  <mat-menu #estadistica="matMenu">
+    <button mat-menu-item (click)="navigateToStatistics()">Estadísticas</button>
+  </mat-menu>
+
+  <button mat-button (click)="closeSesion()">Salir</button>
+</mat-toolbar>

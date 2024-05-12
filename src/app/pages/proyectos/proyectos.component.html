@@ -1,0 +1,10 @@
+<app-header></app-header>
+<ngx-ui-loader *ngIf="!isUserLocationReady; else mapReady"></ngx-ui-loader>
+{{isUserLocationReady}}
+<ng-template #mapReady>
+  <app-mapview></app-mapview>
+  <app-btn-my-location></app-btn-my-location>
+
+</ng-template>
+
+<app-airis-logon></app-airis-logon>

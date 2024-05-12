@@ -1,0 +1,72 @@
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+}
+
+.full-width-input {
+  width: 100%;
+}
+
+.full-width-button {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.forgot-password {
+  margin-top: 10px;
+  text-align: right;
+}
+
+
+.custom-modalbox {
+  max-height: 100vh !important; /* Asegura que el modal no exceda la altura de la ventana */
+  overflow: hidden !important; /* Elimina cualquier scroll interno */
+}
+
+.loading-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%; /* Asegura que ocupe todo el espacio del modal */
+  width: 100%; /* Asegura que ocupe todo el ancho del modal */
+}
+
+.transparent-modal {
+  background-color: transparent !important; /* Fondo del modal transparente */
+  box-shadow: none !important; /* Sin sombras alrededor del modal */
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.backdrop-transparent {
+  background-color: transparent !important; /* Fondo detrás del modal transparente */
+}
+
+.loading-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%; /* Asegura que ocupe todo el espacio del modal */
+  width: 100%; /* Asegura que ocupe todo el ancho del modal */
+}
+
+
+
+a {
+  color: #2575fc;
+}
+
+mat-card-title,
+mat-card-subtitle {
+  color: #333;
+}

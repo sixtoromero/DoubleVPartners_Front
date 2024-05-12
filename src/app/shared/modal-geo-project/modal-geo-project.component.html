@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>Geolocalización</h2>
+<mat-dialog-content>
+  Latitud:  <p>{{ inputdata.lat }}</p>
+  <hr>
+  Longitud:  <p>{{ inputdata.lng }}</p>
+  <hr>
+  <mat-form-field>
+    <mat-label>Descripcion</mat-label>
+    <input matInput [(ngModel)]="descripcion">
+    <!-- <input matInput [(ngModel)]="data.animal"> -->
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="closePopup()">Cancelar</button>
+  <button mat-button (click)="guardarGeo()">Guardar</button>
+</mat-dialog-actions>
+
+<ngx-ui-loader></ngx-ui-loader>
+
+<!-- <h2 mat-dialog-title>Detalles del Mapa</h2>
+<div mat-dialog-content>
+  <p>Información detallada aquí.</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cerrar</button>
+</div> -->
+
