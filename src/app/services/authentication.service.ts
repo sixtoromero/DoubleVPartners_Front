@@ -25,7 +25,7 @@ export class AuthenticationService {
         private _http: HttpClient,
         private router: Router) { }
         
-    insert(formData: UsuarioModel): Observable<ResponseModel<boolean>> {    
+    insert(formData: AuthModel): Observable<ResponseModel<boolean>> {    
         return this._http.post<ResponseModel<boolean>>(`${this.endPoint}/InsertAsync`, formData, httpOptions);
     }
 
