@@ -2,17 +2,17 @@
   <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="navigateDashBoard()">
     <mat-icon>menu</mat-icon>
   </button>
-  <span>AIRIS Solutions</span>
+  <span>Double V Partners</span>
   <span class="example-spacer"></span>
 
-  <button mat-button [matMenuTriggerFor]="menu">Compras</button>
+  <button mat-button [matMenuTriggerFor]="menu">Administrar</button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="navigateToProjects()">Proyectos</button>
+    <button mat-menu-item (click)="navigateToProjects()">Personas</button>
   </mat-menu>
 
-  <button mat-button [matMenuTriggerFor]="estadistica">Venta</button>
+  <button mat-button [matMenuTriggerFor]="estadistica">Configuración</button>
   <mat-menu #estadistica="matMenu">
-    <button mat-menu-item (click)="navigateToStatistics()">Estadísticas</button>
+    <button mat-menu-item (click)="navigateToStatistics()">Registrar Usuario</button>
   </mat-menu>
 
   <button mat-button (click)="closeSesion()">Salir</button>

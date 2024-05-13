@@ -52,7 +52,7 @@ export class EstadisticasComponent {
         error: err => {
           this.ngxService.stop();
           if (err.error.msg == "Token no válido"){
-            localStorage.removeItem('AIRIStoken');
+            localStorage.removeItem('doublevpartnerstoken');
             this.router.navigateByUrl('/login');
           }else{
             Swal.fire('Error', err.error.msg, 'error');

@@ -10,5 +10,5 @@ export class AppComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
 
   }
-  title = 'airisui';
+  title = 'doublevpartnersui';
 }

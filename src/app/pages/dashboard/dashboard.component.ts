@@ -19,7 +19,7 @@ export class DashboardComponent {
 
   isTokenExpired(): boolean {
     debugger;
-    const token = localStorage.getItem('AIRIStoken');
+    const token = localStorage.getItem('doublevpartnerstoken');
     if (!token) return true;
 
     try {

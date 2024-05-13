@@ -19,7 +19,7 @@ export class StatisticsService {
     private router: Router) { }
 
     getStatistics(): Observable<RespStatistics> {
-      const token = localStorage.getItem('AIRIStoken');
+      const token = localStorage.getItem('doublevpartnerstoken');
 
       if (!token) {
         this.router.navigateByUrl('/login');

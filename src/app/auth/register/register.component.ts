@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 import Swal from 'sweetalert2'
 
@@ -25,7 +25,7 @@ export class RegisterComponent {
   constructor(
     private fb: FormBuilder,
     private ngxService: NgxUiLoaderService,
-    private userService: AuthService
+    private userService: AuthenticationService
   ){}
 
   createUser(){
@@ -37,7 +37,7 @@ export class RegisterComponent {
 
     this.ngxService.start();
 
-    this.userService.createUser(this.registerForm.value)
+    this.userService.insert(this.registerForm.value)
       .subscribe({
         next: resp => {
           //tu codigo aqui

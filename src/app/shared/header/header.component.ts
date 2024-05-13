@@ -44,7 +44,7 @@ export class HeaderComponent implements OnInit {
       cancelButtonText: "Cancelar"
     }).then((result) => {
       if (result.isConfirmed) {
-        localStorage.removeItem('AIRIStoken');
+        localStorage.removeItem('doublevpartnerstoken');
         this.router.navigate(['/login']);
       }
   });

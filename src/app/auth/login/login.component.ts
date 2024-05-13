@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 import Swal from 'sweetalert2'
 
@@ -17,19 +17,19 @@ export class LoginComponent {
   public formSubmitted = false;
 
   public loginForm:FormGroup = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(6)]]
+    NombreUsuario: ['', [Validators.required, Validators.maxLength(50)]],
+    Password: ['', [Validators.required, Validators.minLength(5)]]
   });
 
   constructor(
     private router: Router,
     private fb: FormBuilder,
     private ngxService: NgxUiLoaderService,
-    private userService: AuthService
+    private userService: AuthenticationService
   ){}
 
   login() {
-
+    
     this.formSubmitted = true;
 
     if (this.loginForm.invalid){
@@ -37,17 +37,15 @@ export class LoginComponent {
     }
 
     this.ngxService.start();
-    this.userService.login(this.loginForm.value)
+    this.userService.auth(this.loginForm.value)
       .subscribe({
         next: resp => {
-          //tu codigo aqui
           this.ngxService.stop();
           this.router.navigateByUrl('/');
         },
         error: err => {
           this.ngxService.stop();
           Swal.fire('Error', err.error.msg, 'error');
-          //console.log(err)
         }
       });
   }

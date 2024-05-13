@@ -20,7 +20,7 @@ export class ProjectService {
     private router: Router) { }
 
     getProjects(): Observable<RespProject> {
-      const token = localStorage.getItem('AIRIStoken');
+      const token = localStorage.getItem('doublevpartnerstoken');
 
       if (!token) {
         this.router.navigateByUrl('/login');
@@ -36,7 +36,7 @@ export class ProjectService {
 
     postProject(formData: Project){
 
-      const token = localStorage.getItem('AIRIStoken');
+      const token = localStorage.getItem('doublevpartnerstoken');
 
       if (!token) {
         this.router.navigateByUrl('/login');

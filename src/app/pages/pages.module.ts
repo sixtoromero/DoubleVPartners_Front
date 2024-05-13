@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { ProyectosComponent } from './proyectos/proyectos.component';
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SharedModule } from '../shared/shared.module';
@@ -16,14 +15,12 @@ import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 
 
 @NgModule({
-  declarations: [
-    ProyectosComponent,
+  declarations: [    
     PagesComponent,
     DashboardComponent,
     EstadisticasComponent
   ],
-  exports:[
-    ProyectosComponent,
+  exports:[    
     PagesComponent,
     DashboardComponent
   ],
