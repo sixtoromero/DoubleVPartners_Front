@@ -15,7 +15,7 @@ import Swal from 'sweetalert2'
 })
 export class PersonasComponent {
   personas: PersonaModel[] = [];
-  displayedColumns: string[] = ['Identificador', 'Nombres', 'Apellidos', 'Tipo Identificacion','Identificacion', 'Email'];
+  displayedColumns: string[] = ['Identificador', 'Nombres', 'Apellidos', 'TipoIdentificacion','NumeroIdentificacion', 'Email'];
   dataSource: any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -28,12 +28,10 @@ export class PersonasComponent {
     }
 
     getPersonas(){
-
       this.personasService.getAll()
       .subscribe({
         next: resp => {
           this.ngxService.stop();
-
           if (!resp.IsSuccess){
             Swal.fire('Error', resp.Message, 'error');
             return;

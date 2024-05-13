@@ -4,7 +4,7 @@ export class PersonaModel {
     public Apellidos!: string;
     public TipoIdentificacion!: number;
     public NumeroIdentificacion!: string;
-    public Email!: string;    
+    public Email!: string;
     public FechaCreacion!: Date;
     public NumeroConIdentificacion!: string;
     public NombresApellidos!: string;

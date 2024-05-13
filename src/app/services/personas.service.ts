@@ -7,10 +7,13 @@ import { Observable, tap } from 'rxjs';
 import { UsuarioModel } from '../models/usuario.model';
 import { PersonaModel } from '../models/personas.model';
 
+const token = localStorage.getItem('doublevpartnerstoken');
+
 const httpOptions = {
     headers: new HttpHeaders({
         'Contend-Type': 'multipart/form-data',
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${token}`
     })
 };
   

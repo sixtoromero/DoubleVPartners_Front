@@ -19,8 +19,8 @@ export class HeaderComponent implements OnInit {
   }
 
 
-  navigateToProjects() {
-    this.router.navigate(['/dashboard/proyectos']);
+  navigateToPersonas() {
+    this.router.navigate(['/dashboard/personas']);
   }
 
   navigateToStatistics(){
