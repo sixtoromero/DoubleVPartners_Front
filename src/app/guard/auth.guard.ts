@@ -14,9 +14,11 @@ export class AuthGuard implements CanActivate, CanLoad {
     route: Route,
     segments: UrlSegment[]
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    console.log('ENTRANDO A AuthGuard canLoad');
     return this.userServices.validarToken().pipe(
       map(response => {
         // Suponiendo que la API devuelve un objeto ResponseModel con un campo 'success'
+        console.log('Resultado', response);
         if (response.IsSuccess) {
           return true;
         } else {
@@ -35,6 +37,7 @@ export class AuthGuard implements CanActivate, CanLoad {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> {
+    console.log('ENTRANDO A AuthGuard canActivate');
     return this.userServices.validarToken().pipe(
       map(response => {
         if (response.IsSuccess) {

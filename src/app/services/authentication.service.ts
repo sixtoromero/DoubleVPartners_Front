@@ -20,10 +20,14 @@ const httpOptions = {
 export class AuthenticationService {
 
     endPoint = `${environment.base_url}/Usuarios`;
+    
+    //token: string = localStorage.getItem('doublevpartnerstoken') || '';
 
     constructor(
         private _http: HttpClient,
-        private router: Router) { }
+        private router: Router) { 
+            //this.token = localStorage.getItem('doublevpartnerstoken') || '';
+        }
         
     insert(formData: AuthModel): Observable<ResponseModel<boolean>> {    
         return this._http.post<ResponseModel<boolean>>(`${this.endPoint}/InsertAsync`, formData, httpOptions);
@@ -37,13 +41,16 @@ export class AuthenticationService {
         );
     }
 
-    validarToken(): Observable<ResponseModel<boolean>> {
-
-        const token = localStorage.getItem('doublevpartnerstoken') || '';        
+    validarToken(): Observable<ResponseModel<boolean>> {        
+        const token  = localStorage.getItem('doublevpartnerstoken') || '';        
         if (token === '') {
           this.router.navigateByUrl('/login');
         }
 
-        return this._http.post<ResponseModel<boolean>>(`${this.endPoint}/validate-token`, {token});
+        const model = {
+            Token: token
+        }
+
+        return this._http.post<ResponseModel<boolean>>(`${this.endPoint}/validate-token`, model);
     }
 }

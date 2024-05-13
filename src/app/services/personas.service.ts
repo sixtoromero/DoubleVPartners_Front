@@ -7,15 +7,6 @@ import { Observable, tap } from 'rxjs';
 import { UsuarioModel } from '../models/usuario.model';
 import { PersonaModel } from '../models/personas.model';
 
-const token = localStorage.getItem('doublevpartnerstoken');
-
-const httpOptions = {
-    headers: new HttpHeaders({
-        'Contend-Type': 'multipart/form-data',
-        'Accept': 'application/json',
-        'Authorization': `Bearer ${token}`
-    })
-};
   
 @Injectable({
     providedIn: 'root'
@@ -29,22 +20,22 @@ export class PersonasService {
         private router: Router) { }
         
     insert(formData: PersonaModel): Observable<ResponseModel<boolean>> {    
-        return this._http.post<ResponseModel<boolean>>(`${this.endPoint}/InsertAsync`, formData, httpOptions);
+        return this._http.post<ResponseModel<boolean>>(`${this.endPoint}/InsertAsync`, formData);
     }
 
     update(formData: PersonaModel): Observable<ResponseModel<boolean>> {    
-        return this._http.put<ResponseModel<boolean>>(`${this.endPoint}/UpdateAsync`, formData, httpOptions);
+        return this._http.put<ResponseModel<boolean>>(`${this.endPoint}/UpdateAsync`, formData);
     }
 
-    getAll(){  
-        return this._http.get<ResponseModel<PersonaModel[]>>(`${this.endPoint}/GetAllAsync`, httpOptions);        
+    getAll(){          
+        return this._http.get<ResponseModel<PersonaModel[]>>(`${this.endPoint}/GetAllAsync`);        
     }
 
     get(id: number){  
-        return this._http.get<ResponseModel<PersonaModel>>(`${this.endPoint}/GetAsync`, httpOptions);
+        return this._http.get<ResponseModel<PersonaModel>>(`${this.endPoint}/GetAsync`);
     }
     
     delete(id: number){  
-        return this._http.delete<ResponseModel<boolean>>(`${this.endPoint}/DelAsync?Id=${id}`, httpOptions);
+        return this._http.delete<ResponseModel<boolean>>(`${this.endPoint}/DelAsync?Id=${id}`);
     }
 }

@@ -40,12 +40,13 @@ export class LoginComponent {
     this.userService.auth(this.loginForm.value)
       .subscribe({
         next: resp => {
+          console.log('resp', resp);
           this.ngxService.stop();
           this.router.navigateByUrl('/');
         },
         error: err => {
           this.ngxService.stop();
-          Swal.fire('Error', err.error.msg, 'error');
+          Swal.fire('Error', 'El usuario o la contraseña son incorrectos', 'error');
         }
       });
   }

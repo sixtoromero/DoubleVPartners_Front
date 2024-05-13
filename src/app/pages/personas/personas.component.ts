@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -15,7 +15,7 @@ import Swal from 'sweetalert2'
   templateUrl: './personas.component.html',
   styleUrls: ['./personas.component.css']
 })
-export class PersonasComponent {
+export class PersonasComponent implements OnInit {
   personas: PersonaModel[] = [];
   displayedColumns: string[] = ['Identificador', 'Nombres', 'Apellidos', 'TipoIdentificacion','NumeroIdentificacion', 'Email', 'editar'];
   dataSource: any;
@@ -26,14 +26,16 @@ export class PersonasComponent {
     private router: Router,
     private personasService: PersonasService,
     private ngxService: NgxUiLoaderService,    
-    public dialog: MatDialog){
-      this.getPersonas();
-    }
+    public dialog: MatDialog){}
+
+  ngOnInit(): void {
+    this.getPersonas();
+  }
 
     getPersonas(){
       this.personasService.getAll()
       .subscribe({
-        next: resp => {
+        next: resp => {          
           this.ngxService.stop();
           if (!resp.IsSuccess){
             Swal.fire('Error', resp.Message, 'error');
@@ -50,13 +52,13 @@ export class PersonasComponent {
           //resp.statisticsData
 
         },
-        error: err => {
+        error: err => {                    
           this.ngxService.stop();
           if (err.error.msg == "Token no válido"){
             localStorage.removeItem('doublevpartnerstoken');
             this.router.navigateByUrl('/login');
           }else{
-            Swal.fire('Error', err.error.msg, 'error');
+            Swal.fire('Error', 'Los datos en primera instancia no se cargaron correctamente, presione F5 para continuar.', 'error');            
           }
         }
       });

@@ -11,19 +11,19 @@ import { jwtDecode  } from 'jwt-decode';
 })
 export class DashboardComponent {
 
+  token = localStorage.getItem('doublevpartnerstoken');
+
   constructor(private router: Router) {
       if (this.isTokenExpired()) {
         this.router.navigateByUrl('/login');
       }
   }
 
-  isTokenExpired(): boolean {
-    debugger;
-    const token = localStorage.getItem('doublevpartnerstoken');
-    if (!token) return true;
+  isTokenExpired(): boolean {    
+    if (!this.token) return true;
 
     try {
-      const decodedToken: any = jwtDecode(token);
+      const decodedToken: any = jwtDecode(this.token);
       const expirationTime = decodedToken.exp;
       const currentTime = Math.floor(Date.now() / 1000);
 
