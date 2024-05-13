@@ -10,7 +10,6 @@ import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '../modules/material.module';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 import { PersonasComponent } from './personas/personas.component';
 
 
@@ -19,7 +18,6 @@ import { PersonasComponent } from './personas/personas.component';
   declarations: [    
     PagesComponent,
     DashboardComponent,
-    EstadisticasComponent,
     PersonasComponent
   ],
   exports:[    

@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
@@ -6,6 +7,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Statistics } from 'src/app/interfaces/statistics.interface';
 import { PersonaModel } from 'src/app/models/personas.model';
 import { PersonasService } from 'src/app/services/personas.service';
+import { ModalPersonasComponent } from 'src/app/shared/modal-personas/modal-personas.component';
 import Swal from 'sweetalert2'
 
 @Component({
@@ -23,7 +25,8 @@ export class PersonasComponent {
   constructor(
     private router: Router,
     private personasService: PersonasService,
-    private ngxService: NgxUiLoaderService){
+    private ngxService: NgxUiLoaderService,
+    public dialog: MatDialog){
       this.getPersonas();
     }
 
@@ -56,6 +59,18 @@ export class PersonasComponent {
             Swal.fire('Error', err.error.msg, 'error');
           }
         }
+      });
+    }
+
+    
+    openAddRecordModal() {
+      const dialogRef = this.dialog.open(ModalPersonasComponent, {
+        width: '250px'
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('El modal fue cerrado');
+        //this.placesService.getPlacesByQuery();
       });
     }
 }

@@ -8,7 +8,8 @@ import { HeaderComponent } from './header/header.component';
 import { MaterialModule } from '../modules/material.module';
 import { LoadingComponent } from './loading/loading.component';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ModalPersonasComponent } from './modal-personas/modal-personas.component';
 
 
 
@@ -18,6 +19,7 @@ import { FormsModule } from '@angular/forms';
     SidebarComponent,
     HeaderComponent,
     LoadingComponent,
+    ModalPersonasComponent,
   ],
   exports: [
     BreadcrumbsComponent,
@@ -29,7 +31,8 @@ import { FormsModule } from '@angular/forms';
     RouterModule,
     MaterialModule,
     NgxUiLoaderModule,
-    FormsModule
+    FormsModule,    
+    ReactiveFormsModule,
   ]
 })
 export class SharedModule { }
