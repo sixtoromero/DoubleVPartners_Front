@@ -11,6 +11,7 @@ import { MaterialModule } from '../modules/material.module';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
+import { PersonasComponent } from './personas/personas.component';
 
 
 
@@ -18,7 +19,8 @@ import { EstadisticasComponent } from './estadisticas/estadisticas.component';
   declarations: [    
     PagesComponent,
     DashboardComponent,
-    EstadisticasComponent
+    EstadisticasComponent,
+    PersonasComponent
   ],
   exports:[    
     PagesComponent,

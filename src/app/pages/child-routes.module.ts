@@ -5,11 +5,13 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { EstadisticasComponent } from "./estadisticas/estadisticas.component";
+import { PersonasComponent } from './personas/personas.component';
 
 
 const childRoutes: Routes = [
     {path: '', component: DashboardComponent},    
     {path: 'estadisticas', component: EstadisticasComponent},
+    {path: 'personas', component: PersonasComponent},
 ];
 
 @NgModule({
