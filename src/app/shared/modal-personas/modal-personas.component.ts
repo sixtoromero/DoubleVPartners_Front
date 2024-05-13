@@ -16,14 +16,9 @@ export class ModalPersonasComponent implements OnInit  {
 
   
   public formSubmitted = false;
+  public inputdata!: any;
 
-  public registerForm:FormGroup = this.fb.group({
-      Nombres: ['', Validators.required],
-      Apellidos: ['', Validators.required],
-      TipoIdentificacion: ['', Validators.required],
-      NumeroIdentificacion: ['', Validators.required],
-      Email: ['', [Validators.required, Validators.email]]
-  });
+  public registerForm!: FormGroup;
 
   tiposIdentificacion = [
     { value: '1', viewValue: 'Cédula de Ciudadanía' },
@@ -32,13 +27,23 @@ export class ModalPersonasComponent implements OnInit  {
   ];
 
   constructor(
+    @Inject(MAT_DIALOG_DATA) public data:any,
+    private ref: MatDialogRef<ModalPersonasComponent>,
     private fb: FormBuilder,
     private ngxService: NgxUiLoaderService,
-    private personService: PersonasService,
-    private ref: MatDialogRef<ModalPersonasComponent>) {}
+    private personService: PersonasService) {}
 
   ngOnInit(): void {
-    
+    this.inputdata = this.data;
+
+    this.registerForm = this.fb.group({
+      Identificador: [this.inputdata == null ? 0 : this.inputdata.Identificador],
+      Nombres: [this.inputdata == null ? '' : this.inputdata.Nombres, Validators.required],
+      Apellidos: [this.inputdata == null ? '' : this.inputdata.Apellidos, Validators.required],
+      TipoIdentificacion: [this.inputdata == null ? '' : this.inputdata.TipoIdentificacion, Validators.required],
+      NumeroIdentificacion: [this.inputdata == null ? '' : this.inputdata.NumeroIdentificacion, Validators.required],
+      Email: [this.inputdata == null ? '' : this.inputdata.Email, [Validators.required, Validators.email]]
+    });
   }
 
   campoNoValidado(campo: string): boolean {
@@ -57,9 +62,10 @@ export class ModalPersonasComponent implements OnInit  {
       return;
     }
 
-    this.ngxService.start();
+    this.ngxService.start();    
 
-    this.personService.insert(this.registerForm.value)
+    if (this.registerForm.value['Identificador'] == 0){
+      this.personService.insert(this.registerForm.value)
       .subscribe({
         next: resp => {
           this.formSubmitted = false;
@@ -73,6 +79,22 @@ export class ModalPersonasComponent implements OnInit  {
           Swal.fire('Error', err.error.msg, 'error');
         }
       });
+    }else{
+      this.personService.update(this.registerForm.value)
+      .subscribe({
+        next: resp => {
+          this.formSubmitted = false;
+          this.ngxService.stop();
+          this.registerForm.reset();
+          Swal.fire('success', 'Usuario actualizado exitosamente', 'success');
+
+        },
+        error: err => {
+          this.ngxService.stop();
+          Swal.fire('Error', err.error.msg, 'error');
+        }
+      });
+    }
   }
 
   closePopup() {

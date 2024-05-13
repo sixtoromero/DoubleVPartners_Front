@@ -17,7 +17,7 @@ import Swal from 'sweetalert2'
 })
 export class PersonasComponent {
   personas: PersonaModel[] = [];
-  displayedColumns: string[] = ['Identificador', 'Nombres', 'Apellidos', 'TipoIdentificacion','NumeroIdentificacion', 'Email'];
+  displayedColumns: string[] = ['Identificador', 'Nombres', 'Apellidos', 'TipoIdentificacion','NumeroIdentificacion', 'Email', 'editar'];
   dataSource: any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -25,7 +25,7 @@ export class PersonasComponent {
   constructor(
     private router: Router,
     private personasService: PersonasService,
-    private ngxService: NgxUiLoaderService,
+    private ngxService: NgxUiLoaderService,    
     public dialog: MatDialog){
       this.getPersonas();
     }
@@ -70,6 +70,44 @@ export class PersonasComponent {
   
       dialogRef.afterClosed().subscribe(result => {
         this.getPersonas();
+      });
+    }
+
+    openEditRecordModal(element: any){
+      const dialogRef = this.dialog.open(ModalPersonasComponent, {
+        width: '500px',
+        data: element
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        this.getPersonas();
+      });
+    }
+
+    eliminarPersona(item: any){
+      Swal.fire({
+        title: `¿Está seguro de eliminar el registro? ${item.Nombres} ${item.Apellidos}`,
+        text: "Una vez elimine no podrá revertir los cambios",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Aceptar",
+        cancelButtonText: "Cancelar"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.personasService.delete(item.Identificador)
+          .subscribe({
+            next: resp => {              
+              this.getPersonas();
+              Swal.fire('success', 'Registro eliminado', 'success');
+            },
+            error: err => {
+              this.ngxService.stop();
+              Swal.fire('Error', err.error.msg, 'error');
+            }
+          });
+        }
       });
     }
 }

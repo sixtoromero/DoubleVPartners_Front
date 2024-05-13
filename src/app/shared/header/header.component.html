@@ -8,12 +8,7 @@
   <button mat-button [matMenuTriggerFor]="menu">Administrar</button>
   <mat-menu #menu="matMenu">
     <button mat-menu-item (click)="navigateToPersonas()">Personas</button>
-  </mat-menu>
-
-  <button mat-button [matMenuTriggerFor]="estadistica">Configuración</button>
-  <mat-menu #estadistica="matMenu">
-    <button mat-menu-item (click)="navigateToStatistics()">Registrar Usuario</button>
-  </mat-menu>
+  </mat-menu>  
 
   <button mat-button (click)="closeSesion()">Salir</button>
 </mat-toolbar>
