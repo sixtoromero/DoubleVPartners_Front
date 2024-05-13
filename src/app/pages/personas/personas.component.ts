@@ -65,12 +65,11 @@ export class PersonasComponent {
     
     openAddRecordModal() {
       const dialogRef = this.dialog.open(ModalPersonasComponent, {
-        width: '250px'
+        width: '500px'
       });
   
       dialogRef.afterClosed().subscribe(result => {
-        console.log('El modal fue cerrado');
-        //this.placesService.getPlacesByQuery();
+        this.getPersonas();
       });
     }
 }
